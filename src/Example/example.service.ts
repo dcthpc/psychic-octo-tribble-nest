@@ -26,4 +26,35 @@ export class ExampleService {
     }
     return slow;
   }
+
+  customSortString(order: string, s: string): string {
+    // declare sorted string
+    let sorted = "";
+    // declare hash set
+    const hash = new Set<string>()
+    // iterate over order:
+    for(let l = 0; l < order.length; l++) {
+        // get currend order
+        const currOrder = order[l];
+        // iterate over s string
+        for(let r = 0; r < s.length; r++) {
+            // get current char
+            const char = s[r];
+            // if s char equals to current order:
+            if(char === currOrder) {
+                // put into hash set
+                hash.add(char)
+                // add to sorted string
+                sorted += char;
+            }
+        }
+    }
+    // iterate over s string:
+    for(let i = 0; i < s.length; i++) {
+        // if char not in hash set then add it to sorted string
+        if(!hash.has(s[i])) sorted += s[i]
+    }
+    // return result
+    return sorted
+  };
 }
