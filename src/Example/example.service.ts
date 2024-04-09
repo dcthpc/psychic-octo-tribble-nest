@@ -118,4 +118,15 @@ export class ExampleService {
 
     return ans
   }
+
+  timeRequiredToBuy(tickets: number[], k: number): number {
+    const compVal: number = tickets[k];
+    let seconds: number = 0, i: number=0;
+    for (i;i<tickets.length;i++) {
+        if (i===k) seconds+=compVal;
+        else if (i<k) seconds += Math.min(tickets[i],compVal);
+        else seconds += Math.min(tickets[i],compVal-1);
+    }
+    return seconds;
+  };
 }
