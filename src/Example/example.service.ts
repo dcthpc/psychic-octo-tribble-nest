@@ -195,7 +195,7 @@ export class ExampleService {
     return n - tPointer;
   };
 
-  function intersect(nums1, nums2) {
+  intersect(nums1, nums2) {
     nums1.sort((a, b) => a - b);
     nums2.sort((a, b) => a - b);
 
@@ -214,8 +214,25 @@ export class ExampleService {
             y++;
         }
     }
-
     return result;
-};
+  };
 
+  averageWaitingTime(customers: number[][]): number {
+    var st=0;
+    var waitTime=0;
+    var sumWaitTime=0;
+    for(var i=0 ; i<customers.length ; i++){
+        if(st < customers[i][0]){
+            waitTime=customers[i][1];
+            st=(customers[i][0]+customers[i][1]);
+            sumWaitTime+=waitTime;
+            continue;
+        }
+        waitTime=st-customers[i][0]+customers[i][1];
+        st=(st+customers[i][1]);
+        sumWaitTime+=waitTime;
+    }
+    var result = ( sumWaitTime)/(customers.length);
+    return result;
+  };
 }
