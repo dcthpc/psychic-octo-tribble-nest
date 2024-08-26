@@ -235,4 +235,21 @@ export class ExampleService {
     var result = ( sumWaitTime)/(customers.length);
     return result;
   };
+
+  postorder(root: _Node | null): number[] {
+    if (root === null) return []
+
+    const stack: Node[] = [root]
+    const result: number[] = []
+
+    while (stack.length > 0) {
+        const node = stack.pop()!
+        result.push(node.val)
+        for (const child of node.children) {
+            stack.push(child)
+        }
+    }
+
+    return result.reverse()
+  };
 }
